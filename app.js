@@ -571,6 +571,45 @@
     abrirResumenMovil();
   }
 
+  /* ══════════ Servidor (opcional) ══════════
+     Si el sitio corre sin funciones (npx serve, abrir index.html) estas
+     llamadas fallan en silencio y todo sigue con lo que hay en config.js. */
+
+  /* Suma a C.fechasOcupadas las fechas guardadas en la base (/api/fechas). */
+  function cargarFechasRemotas() {
+    if (typeof fetch !== "function") return;
+    fetch("/api/fechas", { headers: { Accept: "application/json" } })
+      .then(function (res) {
+        return res.ok ? res.json() : null;
+      })
+      .then(function (datos) {
+        var lista = datos && Array.isArray(datos.fechas) ? datos.fechas : [];
+        var nuevas = lista.filter(function (f) {
+          return Q.parseFecha(f) && !Q.esOcupada(C, f);
+        });
+        if (!nuevas.length) return;
+        C.fechasOcupadas = (C.fechasOcupadas || []).concat(nuevas);
+        if (sel.fecha && Q.esOcupada(C, sel.fecha)) {
+          sel.fecha = "";
+          aviso("La fecha que elegiste se acaba de reservar. Elegí otra en el paso 2.", "info");
+        }
+        actualizar({ sinEspacios: true });
+      })
+      .catch(function () {});
+  }
+
+  /* Registra el "Enviar por WhatsApp" (/api/consulta) sin esperar la respuesta. */
+  function registrarConsulta() {
+    try {
+      fetch("/api/consulta", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ seleccion: sel }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   /* ══════════ Resumen en celular ══════════ */
   function abrirResumenMovil() {
     $("resumen").classList.add("abierto");
@@ -693,6 +732,7 @@
 
     $("btn-wa").addEventListener("click", function () {
       window.open(linkWa(C.marca.whatsapp, Q.mensajeWhatsApp(C, resultado)), "_blank", "noopener");
+      registrarConsulta();
     });
     $("btn-sena").addEventListener("click", senar);
   }
@@ -714,5 +754,6 @@
   renderGaleria();
   enlazar();
   actualizar();
+  cargarFechasRemotas();
   avisoRegresoPago();
 })();
