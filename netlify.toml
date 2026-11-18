@@ -11,6 +11,21 @@
   to = "/.netlify/functions/crear-pago"
   status = 200
 
+[[redirects]]
+  from = "/api/fechas"
+  to = "/.netlify/functions/fechas"
+  status = 200
+
+[[redirects]]
+  from = "/api/consulta"
+  to = "/.netlify/functions/consulta"
+  status = 200
+
+[[redirects]]
+  from = "/api/mp-webhook"
+  to = "/.netlify/functions/mp-webhook"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

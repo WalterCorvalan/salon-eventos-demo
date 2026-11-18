@@ -23,7 +23,8 @@
 - **Cotizador en vivo:** fecha (detecta fin de semana y feriados), turno, invitados, adicionales por categoría.
 - **Tipos de precio:** por persona, alquiler fijo, fijo, por cantidad, distinto por turno, incluido, a consultar.
 - **Reglas:** recargo de fin de semana (%), mínimo a cobrar, combos con precio especial.
-- **Fechas ocupadas:** calendario propio que muestra los días tomados y no deja elegirlos.
+- **Fechas ocupadas:** calendario propio que muestra los días tomados y no deja elegirlos (desde `config.js` y, opcionalmente, desde la base: una seña aprobada bloquea la fecha sola).
+- **Registro (opcional, Supabase):** cada presupuesto enviado y cada seña quedan guardados.
 - **WhatsApp:** envío del presupuesto armado con un clic.
 - **Seña con Mercado Pago:** porcentaje configurable; el monto se recalcula en el servidor.
 - **Plan de pagos:** seña + N cuotas (informativo).
@@ -32,7 +33,7 @@
 
 ## 06 Fuera de alcance (por ahora)
 - Bot de WhatsApp y CRM de consultas (módulo pago futuro).
-- Fechas ocupadas desde Google Sheets o el panel central (hoy se cargan en `config.js`).
+- Fechas ocupadas desde Google Sheets o el panel central (hoy: `config.js` o la tabla `fechas_ocupadas`).
 - Panel para que el dueño edite precios solo.
 - Login de clientes, reservas confirmadas automáticamente.
 

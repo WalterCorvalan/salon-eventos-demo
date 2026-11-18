@@ -1,5 +1,7 @@
 # Próximos pasos (base de datos, servidor y variables)
 
+> ✅ Hecho: la base (Supabase), `/api/fechas`, `/api/consulta`, el registro de señas y el webhook de Mercado Pago ya están conectados. Ver `docs/ARCHITECTURE.md`. Lo que sigue queda como referencia.
+
 Todo lo que se puede hacer sin cuentas ni servidor ya está hecho. Esto queda para cuando estén creadas las cuentas.
 
 ## Prompt listo para pegar en Claude Code (dentro de este repo)
