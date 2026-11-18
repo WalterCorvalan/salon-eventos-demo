@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+<rect width="1200" height="800" fill="#120c20"/>
+<g opacity=".55"><path d="M200 0 L60 800 H340Z" fill="#b14bff"/><path d="M600 0 L450 800 H750Z" fill="#2de2c8"/><path d="M1000 0 L860 800 H1140Z" fill="#ff5ca8"/></g>
+<g transform="translate(600 140)"><circle r="70" fill="#d9d9e6"/><g fill="#9a9ab5" opacity=".8">
+<rect x="-60" y="-10" width="120" height="6"/><rect x="-66" y="10" width="132" height="6"/><rect x="-50" y="-30" width="100" height="6"/><rect x="-40" y="30" width="80" height="6"/></g><rect x="-2" y="-200" width="4" height="130" fill="#555"/></g>
+<g>
+<rect x='0' y='520' width='100' height='50' fill='#b14bff' opacity='.3'/>
+<rect x='100' y='520' width='100' height='50' fill='#2de2c8' opacity='.6'/>
+<rect x='200' y='520' width='100' height='50' fill='#ff5ca8' opacity='.4'/>
+<rect x='300' y='520' width='100' height='50' fill='#b14bff' opacity='.7'/>
+<rect x='400' y='520' width='100' height='50' fill='#2de2c8' opacity='.5'/>
+<rect x='500' y='520' width='100' height='50' fill='#ff5ca8' opacity='.3'/>
+<rect x='600' y='520' width='100' height='50' fill='#b14bff' opacity='.6'/>
+<rect x='700' y='520' width='100' height='50' fill='#2de2c8' opacity='.4'/>
+<rect x='800' y='520' width='100' height='50' fill='#ff5ca8' opacity='.7'/>
+<rect x='900' y='520' width='100' height='50' fill='#b14bff' opacity='.5'/>
+<rect x='1000' y='520' width='100' height='50' fill='#2de2c8' opacity='.3'/>
+<rect x='1100' y='520' width='100' height='50' fill='#ff5ca8' opacity='.6'/>
+<rect x='0' y='570' width='100' height='50' fill='#2de2c8' opacity='.5'/>
+<rect x='100' y='570' width='100' height='50' fill='#ff5ca8' opacity='.3'/>
+<rect x='200' y='570' width='100' height='50' fill='#b14bff' opacity='.6'/>
+<rect x='300' y='570' width='100' height='50' fill='#2de2c8' opacity='.4'/>
+<rect x='400' y='570' width='100' height='50' fill='#ff5ca8' opacity='.7'/>
+<rect x='500' y='570' width='100' height='50' fill='#b14bff' opacity='.5'/>
+<rect x='600' y='570' width='100' height='50' fill='#2de2c8' opacity='.3'/>
+<rect x='700' y='570' width='100' height='50' fill='#ff5ca8' opacity='.6'/>
+<rect x='800' y='570' width='100' height='50' fill='#b14bff' opacity='.4'/>
+<rect x='900' y='570' width='100' height='50' fill='#2de2c8' opacity='.7'/>
+<rect x='1000' y='570' width='100' height='50' fill='#ff5ca8' opacity='.5'/>
+<rect x='1100' y='570' width='100' height='50' fill='#b14bff' opacity='.3'/>
+<rect x='0' y='620' width='100' height='50' fill='#ff5ca8' opacity='.7'/>
+<rect x='100' y='620' width='100' height='50' fill='#b14bff' opacity='.5'/>
+<rect x='200' y='620' width='100' height='50' fill='#2de2c8' opacity='.3'/>
+<rect x='300' y='620' width='100' height='50' fill='#ff5ca8' opacity='.6'/>
+<rect x='400' y='620' width='100' height='50' fill='#b14bff' opacity='.4'/>
+<rect x='500' y='620' width='100' height='50' fill='#2de2c8' opacity='.7'/>
+<rect x='600' y='620' width='100' height='50' fill='#ff5ca8' opacity='.5'/>
+<rect x='700' y='620' width='100' height='50' fill='#b14bff' opacity='.3'/>
+<rect x='800' y='620' width='100' height='50' fill='#2de2c8' opacity='.6'/>
+<rect x='900' y='620' width='100' height='50' fill='#ff5ca8' opacity='.4'/>
+<rect x='1000' y='620' width='100' height='50' fill='#b14bff' opacity='.7'/>
+<rect x='1100' y='620' width='100' height='50' fill='#2de2c8' opacity='.5'/>
+<rect x='0' y='670' width='100' height='50' fill='#b14bff' opacity='.4'/>
+<rect x='100' y='670' width='100' height='50' fill='#2de2c8' opacity='.7'/>
+<rect x='200' y='670' width='100' height='50' fill='#ff5ca8' opacity='.5'/>
+<rect x='300' y='670' width='100' height='50' fill='#b14bff' opacity='.3'/>
+<rect x='400' y='670' width='100' height='50' fill='#2de2c8' opacity='.6'/>
+<rect x='500' y='670' width='100' height='50' fill='#ff5ca8' opacity='.4'/>
+<rect x='600' y='670' width='100' height='50' fill='#b14bff' opacity='.7'/>
+<rect x='700' y='670' width='100' height='50' fill='#2de2c8' opacity='.5'/>
+<rect x='800' y='670' width='100' height='50' fill='#ff5ca8' opacity='.3'/>
+<rect x='900' y='670' width='100' height='50' fill='#b14bff' opacity='.6'/>
+<rect x='1000' y='670' width='100' height='50' fill='#2de2c8' opacity='.4'/>
+<rect x='1100' y='670' width='100' height='50' fill='#ff5ca8' opacity='.7'/>
+<rect x='0' y='720' width='100' height='50' fill='#2de2c8' opacity='.6'/>
+<rect x='100' y='720' width='100' height='50' fill='#ff5ca8' opacity='.4'/>
+<rect x='200' y='720' width='100' height='50' fill='#b14bff' opacity='.7'/>
+<rect x='300' y='720' width='100' height='50' fill='#2de2c8' opacity='.5'/>
+<rect x='400' y='720' width='100' height='50' fill='#ff5ca8' opacity='.3'/>
+<rect x='500' y='720' width='100' height='50' fill='#b14bff' opacity='.6'/>
+<rect x='600' y='720' width='100' height='50' fill='#2de2c8' opacity='.4'/>
+<rect x='700' y='720' width='100' height='50' fill='#ff5ca8' opacity='.7'/>
+<rect x='800' y='720' width='100' height='50' fill='#b14bff' opacity='.5'/>
+<rect x='900' y='720' width='100' height='50' fill='#2de2c8' opacity='.3'/>
+<rect x='1000' y='720' width='100' height='50' fill='#ff5ca8' opacity='.6'/>
+<rect x='1100' y='720' width='100' height='50' fill='#b14bff' opacity='.4'/>
+<rect x='0' y='770' width='100' height='50' fill='#ff5ca8' opacity='.3'/>
+<rect x='100' y='770' width='100' height='50' fill='#b14bff' opacity='.6'/>
+<rect x='200' y='770' width='100' height='50' fill='#2de2c8' opacity='.4'/>
+<rect x='300' y='770' width='100' height='50' fill='#ff5ca8' opacity='.7'/>
+<rect x='400' y='770' width='100' height='50' fill='#b14bff' opacity='.5'/>
+<rect x='500' y='770' width='100' height='50' fill='#2de2c8' opacity='.3'/>
+<rect x='600' y='770' width='100' height='50' fill='#ff5ca8' opacity='.6'/>
+<rect x='700' y='770' width='100' height='50' fill='#b14bff' opacity='.4'/>
+<rect x='800' y='770' width='100' height='50' fill='#2de2c8' opacity='.7'/>
+<rect x='900' y='770' width='100' height='50' fill='#ff5ca8' opacity='.5'/>
+<rect x='1000' y='770' width='100' height='50' fill='#b14bff' opacity='.3'/>
+<rect x='1100' y='770' width='100' height='50' fill='#2de2c8' opacity='.6'/>
+</g>
+<g fill="#0a0612">
+<circle cx="300" cy="420" r="30"/><path d="M270 450 h60 l20 120 h-100z"/>
+<circle cx="480" cy="400" r="32"/><path d="M448 432 h64 l-10 140 h-44z"/><path d="M450 440 l-60 -70 l12 -8 l58 60z"/>
+<circle cx="720" cy="410" r="30"/><path d="M690 440 h60 l25 130 h-110z"/><path d="M748 448 l60 -80 l12 8 l-62 82z"/>
+<circle cx="900" cy="425" r="28"/><path d="M872 453 h56 l10 120 h-76z"/>
+</g>
+</svg>
