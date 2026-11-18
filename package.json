@@ -1,0 +1,12 @@
+{
+  "name": "salon-eventos-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plantilla web para salones y quintas de eventos con cotizador en vivo, WhatsApp y seña con Mercado Pago.",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": { "node": ">=18" },
+  "license": "Apache-2.0"
+}
