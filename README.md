@@ -3,7 +3,7 @@
 Web lista para cualquier salón de fiestas, quinta o party hall, con **cotizador en vivo**, **calendario de fechas ocupadas**, envío del presupuesto por **WhatsApp** y **seña con Mercado Pago**. La demo usa un salón ficticio, "Salón Aurora".
 
 - Todo lo del cliente está en **`config.js`** (marca, espacios, precios, adicionales, combos, fechas ocupadas, seña).
-- Sin build y sin dependencias: HTML + CSS + JS. Se publica gratis en Netlify.
+- Sin build y sin dependencias: HTML + CSS + JS. Se publica gratis en Cloudflare Workers (o Netlify).
 - 3 estilos: `claro` (quinta), `oscuro` (party hall), `elegante` (casamientos). En la demo se cambian desde la franja de arriba o con `?tema=oscuro`.
 
 ## Probar en la compu
@@ -14,7 +14,13 @@ npm test             # 20 tests del cotizador y del cobro de la seña
 ```
 La seña necesita la función de Netlify: `npx netlify dev`. Sin `MP_ACCESS_TOKEN` la página muestra "Modo demo" en lugar de abrir Mercado Pago.
 
-## Publicar en Netlify
+## Publicar en Cloudflare (lo que se usa hoy)
+1. Cloudflare → *Workers & Pages* → *Create application* → *Import a repository* → elegir este repo.
+2. Project name: `salon-eventos`. Build command: vacío. Deploy command: `npx wrangler deploy` (lee `wrangler.jsonc`).
+3. (Opcional) *Settings → Variables and Secrets*: `MP_ACCESS_TOKEN` (Secret) = token de Mercado Pago **del salón**. Sin él, la seña muestra "Modo demo".
+4. `worker.js` sirve la web y atiende `/api/crear-pago` con la misma función de Netlify. `.assetsignore` deja afuera docs, tests y archivos internos.
+
+## Publicar en Netlify (alternativa)
 1. Netlify → *Add new site* → *Import from Git* → elegir este repo.
 2. Build command: vacío. Publish directory: `.` (ya está en `netlify.toml`).
 3. (Opcional) *Site settings → Environment variables*: `MP_ACCESS_TOKEN` = token de producción de Mercado Pago **del salón**.

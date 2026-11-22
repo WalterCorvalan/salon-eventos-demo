@@ -1,0 +1,15 @@
+.git
+.gitignore
+.assetsignore
+node_modules
+docs
+tests
+netlify
+netlify.toml
+worker.js
+wrangler.jsonc
+package.json
+package-lock.json
+*.md
+LICENSE
+.wrangler

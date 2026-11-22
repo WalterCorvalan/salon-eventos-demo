@@ -10,8 +10,8 @@ Navegador → sitio estático (HTML + CSS + JS, sin build) → función serverle
 | Configuración del cliente | `config.js` (un archivo por cliente) | gratis |
 | Lógica de precios | `cotizador.js` (mismo archivo en navegador y servidor) | gratis |
 | Pagos | Mercado Pago Checkout Pro vía API REST (sin SDK) | comisión de MP, la paga el cliente |
-| Funciones | Netlify Functions | gratis dentro del plan Starter |
-| Deploy | Netlify (permite uso comercial gratis) | USD 0 |
+| Funciones | `worker.js` en Cloudflare Workers (reusa la función de Netlify) | gratis (100.000 pedidos/día) |
+| Deploy | Cloudflare Workers (uso comercial gratis); Netlify queda como alternativa | USD 0 |
 | Fotos demo | Ilustraciones SVG propias en `img/demo/` | gratis, sin derechos de terceros |
 | Tests | `node --test` (sin dependencias) | gratis |
 
@@ -24,7 +24,10 @@ app.js                arma la página y maneja el cotizador
 style.css             estilos + 3 temas por variables CSS
 img/demo/             imágenes ficticias de la demo (reemplazar por las del cliente)
 netlify/functions/    crear-pago.js (seña con Mercado Pago)
-netlify.toml          redirección /api/crear-pago → función
+netlify.toml          redirección /api/crear-pago → función (si se usa Netlify)
+worker.js             Worker de Cloudflare: web estática + /api/crear-pago
+wrangler.jsonc        configuración de Cloudflare
+.assetsignore         lo que NO se publica (docs, tests, archivos internos)
 tests/                tests del cotizador
 docs/                 PRD, diseño y arquitectura
 ```

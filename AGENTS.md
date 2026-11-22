@@ -27,7 +27,7 @@ Plantilla genérica para salones y quintas de eventos. Cada cliente es una copia
 ## 06 Comandos
 - Correr local: `npx serve .` (o abrir `index.html`; la seña necesita `netlify dev`).
 - Tests: `npm test`
-- Deploy: conectar el repo en Netlify (sin build, carpeta publicada `.`).
+- Deploy: Cloudflare Workers conectado al repo (deploy command `npx wrangler deploy`). Local: `npx wrangler dev`.
 
 ## 07 Si hay dudas
 - Mirar docs/ y el README ("Alta de un cliente nuevo").

@@ -1,0 +1,15 @@
+// Publicación en Cloudflare Workers (plan gratis).
+// Workers & Pages → Create → Import a repository → este repo. Sin build command.
+// Deploy command: npx wrangler deploy
+{
+  "name": "salon-eventos",
+  "main": "worker.js",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
+    "not_found_handling": "none"
+  }
+}
