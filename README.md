@@ -15,6 +15,8 @@ npm test             # 20 tests del cotizador y del cobro de la seña
 La seña necesita la función de Netlify: `npx netlify dev`. Sin `MP_ACCESS_TOKEN` la página muestra "Modo demo" en lugar de abrir Mercado Pago.
 
 ## Publicar en Cloudflare (lo que se usa hoy)
+Demo en vivo: Worker `salon-eventos` (https://salon-eventos.waltercorvalan505.workers.dev), creado el 22/11/2026 y publicado desde la rama `claude/project-thread-cr2y6z` hasta que se fusione el PR #1 (después, cambiar la rama de producción a `master`).
+
 1. Cloudflare → *Workers & Pages* → *Create application* → *Import a repository* → elegir este repo.
 2. Project name: `salon-eventos`. Build command: vacío. Deploy command: `npx wrangler deploy` (lee `wrangler.jsonc`).
 3. (Opcional) *Settings → Variables and Secrets*: `MP_ACCESS_TOKEN` (Secret) = token de Mercado Pago **del salón**. Sin él, la seña muestra "Modo demo".
