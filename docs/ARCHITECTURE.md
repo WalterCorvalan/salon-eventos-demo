@@ -12,7 +12,8 @@ Navegador → sitio estático (HTML + CSS + JS, sin build) → función serverle
 | Pagos | Mercado Pago Checkout Pro vía API REST (sin SDK) | comisión de MP, la paga el cliente |
 | Funciones | `worker.js` en Cloudflare Workers (reusa la función de Netlify) | gratis (100.000 pedidos/día) |
 | Deploy | Cloudflare Workers (uso comercial gratis); Netlify queda como alternativa | USD 0 |
-| Fotos demo | Ilustraciones SVG propias en `img/demo/` | gratis, sin derechos de terceros |
+| Fotos demo | Fotos de ambiente generadas por código (WebP) en `img/demo/` | gratis, sin derechos de terceros |
+| Íconos | Lucide (ISC) copiados en `iconos.js` | gratis, sin dependencias |
 | Tests | `node --test` (sin dependencias) | gratis |
 
 ## 03 Estructura de carpetas

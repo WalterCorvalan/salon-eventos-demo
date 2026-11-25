@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#2F6B3F" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -23,8 +23,9 @@
     <div class="contenedor nav-in">
       <a href="#inicio" class="nav-logo" id="nav-logo"></a>
       <div class="nav-links">
-        <a href="#galeria">Fotos</a>
-        <a href="#cotizador" class="nav-cta">Armá tu presupuesto</a>
+        <a href="#galeria">El lugar</a>
+        <a href="#ubicacion">Cómo llegar</a>
+        <a href="#cotizador" class="nav-cta">Presupuesto</a>
       </div>
     </div>
   </nav>
@@ -37,19 +38,21 @@
       <p class="hero-texto" id="hero-texto"></p>
       <div class="hero-botones">
         <a href="#cotizador" class="btn btn-primario">Armá tu presupuesto</a>
-        <a href="#galeria" class="btn btn-secundario">Ver fotos</a>
+        <a href="#galeria" class="btn btn-secundario">Conocé el lugar</a>
       </div>
+      <div class="hero-datos" id="hero-datos"></div>
     </div>
   </header>
 
-  <section class="porque">
+  <section class="porque" aria-label="Por qué elegirnos">
     <div class="contenedor porque-grid" id="porque-grid"></div>
   </section>
 
   <section class="galeria" id="galeria">
     <div class="contenedor">
       <div class="seccion-cabeza">
-        <h2>Conocé el lugar</h2>
+        <span class="sobretitulo">El lugar</span>
+        <h2>Conocé cada <em>rincón</em></h2>
         <p>Tocá una foto para verla grande</p>
       </div>
       <div class="filtros" id="galeria-filtros" role="tablist" aria-label="Filtrar fotos"></div>
@@ -61,7 +64,8 @@
   <section class="cotizador" id="cotizador">
     <div class="contenedor">
       <div class="seccion-cabeza">
-        <h2>Armá tu presupuesto</h2>
+        <span class="sobretitulo">Presupuesto online</span>
+        <h2>Armá tu fiesta <em>en un minuto</em></h2>
         <p>Elegí todo y mirá el total al instante. Después lo mandás por WhatsApp con un toque.</p>
       </div>
 
@@ -102,10 +106,11 @@
               <span class="resumen-barra-label">Total estimado</span>
               <strong class="resumen-barra-total" id="resumen-barra-total">$0</strong>
             </span>
-            <span class="resumen-barra-der"><span id="resumen-barra-texto">Ver detalle</span> <span class="flecha">▲</span></span>
+            <span class="resumen-barra-der"><span id="resumen-barra-texto">Ver detalle</span> <svg class="flecha" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></span>
           </button>
           <div class="resumen-cuerpo" id="resumen-cuerpo">
-            <h3>Tu presupuesto</h3>
+            <span class="resumen-sobre">Tu presupuesto</span>
+            <h3>Resumen del evento</h3>
             <p class="resumen-sub" id="resumen-sub"></p>
             <div class="resumen-lineas" id="resumen-lineas"></div>
             <div class="resumen-total"><span>Total estimado</span><strong id="resumen-total">$0</strong></div>
@@ -126,7 +131,8 @@
   <section class="ubicacion" id="ubicacion">
     <div class="contenedor">
       <div class="seccion-cabeza">
-        <h2>Cómo llegar</h2>
+        <span class="sobretitulo">Ubicación</span>
+        <h2>Cómo <em>llegar</em></h2>
         <p id="ubicacion-direccion"></p>
       </div>
       <div class="mapa" id="mapa"></div>
@@ -147,9 +153,9 @@
     <div class="modal-fondo" data-cerrar></div>
     <figure class="modal-panel">
       <button type="button" class="modal-cerrar" data-cerrar aria-label="Cerrar">×</button>
-      <button type="button" class="modal-nav prev" id="modal-prev" aria-label="Foto anterior">‹</button>
+      <button type="button" class="modal-nav prev" id="modal-prev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
       <img id="modal-img" alt="" />
-      <button type="button" class="modal-nav next" id="modal-next" aria-label="Foto siguiente">›</button>
+      <button type="button" class="modal-nav next" id="modal-next" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
       <figcaption id="modal-texto"></figcaption>
     </figure>
   </div>
@@ -158,6 +164,7 @@
     <symbol id="ico-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.41Z"/></symbol>
   </svg>
 
+  <script src="iconos.js"></script>
   <script src="config.js"></script>
   <script src="cotizador.js"></script>
   <script src="app.js"></script>

@@ -6,41 +6,44 @@ Cálido, festivo, claro, confiable.
 ## 02 Colores (por tema, variables CSS en `style.css`)
 | Token | Claro (quinta) | Oscuro (party hall) | Elegante (casamientos) | Uso |
 |---|---|---|---|---|
-| `--fondo` | #FFFDF8 | #0E0B16 | #FBF8F3 | Fondo de página |
-| `--superficie` | #FFFFFF | #1A1526 | #FFFFFF | Tarjetas |
-| `--suave-fondo` | #F2EBDC | #241D35 | #F1ECE4 | Secciones alternas |
-| `--texto` | #1F2A22 | #F3F0FA | #2A2622 | Texto principal |
-| `--apagado` | #5B6A5F | #A79FBF | #6E665D | Texto secundario |
-| `--primario` | #2F6B3F | #B14BFF | #2A2622 | Títulos, selección |
-| `--acento` | #E07A2E | #2DE2C8 | #B08D57 | Botones principales |
-| `--borde` | #E4DCC8 | #352C4A | #E6DED2 | Bordes |
+| `--fondo` | #F7F3EC | #0B0A10 | #FAF7F2 | Fondo de página |
+| `--superficie` | #FFFFFF | #15131D | #FFFFFF | Tarjetas |
+| `--suave-fondo` | #EFE8DC | #1C1928 | #F1EBE2 | Secciones alternas, íconos |
+| `--texto` | #1C1A17 | #F4F1EA | #24201C | Texto principal |
+| `--apagado` | #6B645A | #A19BB0 | #776E63 | Texto secundario |
+| `--primario` | #1F3D2B | #C9B6FF | #24201C | Selección, precios |
+| `--acento` | #C8643B | #E8C27A | #A88452 | Botones principales, palabras destacadas |
+| `--tinta` | #161512 | #1C1928 | #24201C | Barra del resumen y pie |
+| `--borde` | #E4DCCD | #2A2638 | #E7DED1 | Bordes |
 | `--wa` | #25D366 | #25D366 | #25D366 | Botón WhatsApp |
-| `--error` | #D64545 | #FF5C7A | #B3261E | Fechas ocupadas, errores |
+| `--error` | #C2412D | #FF6B81 | #A3352A | Fechas ocupadas, errores |
 
 Un cliente puede pisar `primario` y `acento` con sus colores en `config.js` (`marca.colores`).
 
 ## 03 Tipografía
-- Títulos: Fraunces (Google Fonts), tema elegante usa Cormorant Garamond.
-- Texto: Inter.
-- H1: clamp(32px, 6vw, 56px) Bold · H2: clamp(24px, 4vw, 36px) Semibold · H3: 18px Semibold
-- Texto: 16px · Nota: 14px
+- Títulos: Instrument Serif 400 (cursiva para la palabra destacada, en `--acento`). Tema elegante: Cormorant Garamond 500.
+- Texto: Manrope 400–800.
+- H1 (hero): clamp(60px, 15vw, 132px) · H2: clamp(38px, 7vw, 64px) · H3: 24–28px
+- Sobretítulos: 12px, mayúsculas, espaciado 0.16em, color `--acento`, con línea a la izquierda.
+- Montos grandes (total, invitados): en la fuente de títulos, números tabulares.
 
 ## 04 Espaciado
-Escala de 8px: 4, 8, 16, 24, 32, 48, 64.
+Escala de 4px: 4, 8, 12, 16, 20, 28, 36, 48, 72, 104 (secciones: 72px celular, 104px desde tablet).
 
 ## 05 Bordes
-- Inputs y chips: 8px · Tarjetas: 12px · Botones: 999px (píldora) · Modal: 16px
+- Tarjetas: 18px (`--radio`; elegante 6px) · Opciones: 12px · Botones: píldora (elegante: rectos, mayúsculas).
 
 ## 06 Componentes
-- **Botón primario:** fondo `--acento`, texto blanco (tema oscuro: texto `#0E0B16`).
-- **Botón WhatsApp:** fondo `--wa`, texto blanco, ícono WhatsApp.
-- **Tarjeta de opción:** borde 2px `--borde`; seleccionada: borde `--primario` y tilde.
-- **Contador:** botones − / + de 36px, número al centro.
-- **Calendario:** grilla 7 columnas; ocupado = tachado en `--error`; seleccionado = `--primario`.
-- **Resumen flotante:** barra fija abajo con total; se expande con el detalle.
+- **Hero:** foto a pantalla completa con degradé abajo, título grande, datos rápidos (capacidad, espacios) y tarjeta de vidrio "Próximo sábado libre" que elige esa fecha en el cotizador.
+- **Navegación:** transparente sobre el hero; al bajar se vuelve sólida con desenfoque.
+- **Botón primario:** fondo `--acento` con sombra del mismo color.
+- **Tarjeta de opción:** ícono en cuadradito `--suave-fondo`; seleccionada: borde doble `--primario`, ícono invertido y tilde.
+- **Calendario:** días redondos; finde = punto `--acento`; ocupado = tachado `--error`; elegido = círculo `--primario`.
+- **Resumen:** en celular, cápsula flotante oscura (`--tinta`) con el total y botón "Ver detalle"; en escritorio, columna fija.
+- **Galería:** grilla tipo mosaico, primera foto grande, epígrafe sobre degradé.
 
 ## 07 Íconos
-Emojis (cero dependencias) + SVG de WhatsApp e Instagram.
+Íconos de línea Lucide (licencia ISC) en `iconos.js`, generado con los que se usan. En `config.js` se pone el nombre (`"landmark"`, `"trees"`…); si se pone un emoji, se muestra el emoji.
 
 ## 08 Pantallas
 - Celular: < 640px · Tablet: 640–1024px · Escritorio: > 1024px (resumen pasa a columna lateral fija).

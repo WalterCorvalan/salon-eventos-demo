@@ -12,6 +12,7 @@
     return document.getElementById(id);
   };
   var pesos = Q.formatoPesos;
+  var ico = window.icono || function (n) { return esc(n); };
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
   var DIAS = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"];
   var DIAS_LARGOS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
@@ -84,18 +85,19 @@
     setMeta('meta[property="og:description"]', m.seo.descripcion);
 
     $("nav-logo").innerHTML =
-      (m.logo ? '<img src="' + esc(m.logo) + '" alt="" class="logo-img">' : '<span class="logo-emoji">' + esc(m.logoEmoji || "✦") + "</span>") +
+      (m.logo ? '<img src="' + esc(m.logo) + '" alt="" class="logo-img">' : '<span class="logo-emoji">' + ico(m.logoEmoji || "sparkles") + "</span>") +
       "<span>" + esc(m.nombre) + "</span>";
 
     var h = m.hero;
-    $("hero-etiqueta").textContent = h.etiqueta;
+    $("hero-etiqueta").innerHTML = ico("map-pin") + "<span>" + esc(h.etiqueta) + "</span>";
+    renderHeroDatos();
     $("hero-titulo").innerHTML = esc(h.titulo) + "<br><em>" + esc(h.tituloDestacado) + "</em>";
     $("hero-texto").textContent = h.texto;
     if (h.imagen) $("hero-fondo").style.backgroundImage = "url('" + h.imagen.replace(/'/g, "%27") + "')";
 
     $("porque-grid").innerHTML = (m.porQue || [])
       .map(function (p) {
-        return '<div class="porque-item"><span class="porque-icono">' + esc(p.icono) + "</span><h3>" + esc(p.titulo) + "</h3><p>" + esc(p.texto) + "</p></div>";
+        return '<div class="porque-item"><span class="porque-icono">' + ico(p.icono) + "</span><h3>" + esc(p.titulo) + "</h3><p>" + esc(p.texto) + "</p></div>";
       })
       .join("");
 
@@ -117,6 +119,50 @@
     $("pie-texto").innerHTML = esc(m.nombre) + " · " + esc(m.ciudad) + "<br><small>" + esc(m.eslogan) + "</small>";
     var wa = $("wa-flotante");
     wa.href = linkWa(m.whatsapp, "Hola, quiero consultar disponibilidad en " + m.nombre);
+  }
+
+  /* Datos rápidos del hero: capacidad, espacios y próxima fecha libre de fin de semana */
+  function renderHeroDatos() {
+    var cont = $("hero-datos");
+    if (!cont) return;
+    var max = C.espacios.reduce(function (m, e) { return Math.max(m, e.max); }, 0);
+    var libre = null;
+    for (var i = 0; i < 120 && !libre; i++) {
+      var f = new Date(minFecha.getFullYear(), minFecha.getMonth(), minFecha.getDate() + i);
+      var iso = Q.isoDe(f);
+      if (f.getDay() === 6 && !Q.esOcupada(C, iso)) libre = f;
+    }
+    var datos = [
+      ["users", "Hasta " + max, "invitados"],
+      ["landmark", C.espacios.length + (C.espacios.length === 1 ? " espacio" : " espacios"), "a elección"],
+    ];
+    cont.innerHTML =
+      datos
+        .map(function (d) {
+          return '<div class="hero-dato">' + ico(d[0]) + "<div><strong>" + esc(d[1]) + "</strong><span>" + esc(d[2]) + "</span></div></div>";
+        })
+        .join("") +
+      (libre
+        ? '<a href="#cotizador" class="hero-libre" data-libre="' + Q.isoDe(libre) + '"><span class="hero-libre-punto"></span><div><span>Próximo sábado libre</span><strong>' +
+          DIAS_LARGOS[libre.getDay()] + " " + libre.getDate() + " de " + MESES[libre.getMonth()] + "</strong></div>" + ico("arrow-right") + "</a>"
+        : "");
+    var a = cont.querySelector("[data-libre]");
+    if (a)
+      a.addEventListener("click", function () {
+        sel.fecha = a.getAttribute("data-libre");
+        var f = Q.parseFecha(sel.fecha);
+        mesVisible = new Date(f.getFullYear(), f.getMonth(), 1);
+        actualizar({ sinEspacios: true });
+      });
+  }
+
+  function iniciarNav() {
+    var nav = document.querySelector(".nav");
+    function revisar() {
+      nav.classList.toggle("solida", window.scrollY > 40);
+    }
+    window.addEventListener("scroll", revisar, { passive: true });
+    revisar();
   }
 
   function iniciarDemo() {
@@ -194,7 +240,7 @@
     $("galeria-grid").innerHTML = fotos.length
       ? fotos
           .map(function (f, i) {
-            return '<button type="button" class="galeria-item' + (i === 0 ? " grande" : "") + '" data-idx="' + i + '"><img loading="lazy" src="' + esc(f.src) + '" alt="' + esc(f.alt) + '"></button>';
+            return '<button type="button" class="galeria-item' + (i === 0 ? " grande" : "") + '" data-idx="' + i + '"><img loading="lazy" src="' + esc(f.src) + '" alt="' + esc(f.alt) + '"><span class="galeria-pie">' + esc(f.alt) + "</span></button>";
           })
           .join("")
       : '<p class="vacio">Todavía no hay fotos en esta categoría.</p>';
@@ -218,7 +264,7 @@
         var precio = (e.precio && e.precio.modelo) === "fijo" ? "Alquiler desde " + pesos(desde) : "Desde " + pesos(desde) + " por invitado";
         return (
           '<button type="button" class="opc' + (e.id === sel.espacio ? " activo" : "") + '" data-espacio="' + esc(e.id) + '" aria-pressed="' + (e.id === sel.espacio) + '">' +
-          '<span class="opc-check" aria-hidden="true">✓</span><span class="opc-icono">' + esc(e.icono) + "</span>" +
+          '<span class="opc-check" aria-hidden="true">' + ico("check") + '</span><span class="opc-icono">' + ico(e.icono) + "</span>" +
           '<span class="opc-nombre">' + esc(e.nombre) + "</span>" +
           '<span class="opc-desc">' + esc(e.descripcion) + "</span>" +
           '<span class="opc-desc">' + e.min + " a " + e.max + " invitados</span>" +
@@ -249,9 +295,9 @@
     var puedeAtras = new Date(y, m, 1) > new Date(minFecha.getFullYear(), minFecha.getMonth(), 1);
     var html =
       '<div class="cal-cabeza">' +
-      '<button type="button" class="cal-nav" data-mes="-1" aria-label="Mes anterior"' + (puedeAtras ? "" : " disabled") + ">‹</button>" +
+      '<button type="button" class="cal-nav" data-mes="-1" aria-label="Mes anterior"' + (puedeAtras ? "" : " disabled") + ">" + ico("chevron-left") + "</button>" +
       '<strong aria-live="polite">' + MESES[m].charAt(0).toUpperCase() + MESES[m].slice(1) + " " + y + "</strong>" +
-      '<button type="button" class="cal-nav" data-mes="1" aria-label="Mes siguiente">›</button></div>' +
+      '<button type="button" class="cal-nav" data-mes="1" aria-label="Mes siguiente">' + ico("chevron-right") + "</button></div>" +
       '<div class="cal-grid" role="grid">' +
       DIAS.map(function (d) {
         return '<span class="cal-dia-nombre">' + d + "</span>";
@@ -282,8 +328,8 @@
     if (sel.fecha) {
       var f = Q.parseFecha(sel.fecha);
       info.innerHTML =
-        "✅ Elegiste el <strong>" + DIAS_LARGOS[f.getDay()] + " " + f.getDate() + " de " + MESES[f.getMonth()] + "</strong>" +
-        (Q.esFinde(C, sel.fecha) ? (Q.esFeriado(C, sel.fecha) ? " (feriado)" : " (fin de semana)") : "") + ". Está libre.";
+        ico("check") + "<span>Elegiste el <strong>" + DIAS_LARGOS[f.getDay()] + " " + f.getDate() + " de " + MESES[f.getMonth()] + "</strong>" +
+        (Q.esFinde(C, sel.fecha) ? (Q.esFeriado(C, sel.fecha) ? " (feriado)" : " (fin de semana)") : "") + ". Está libre.</span>";
       info.className = "fecha-info ok";
     } else {
       info.textContent = "Elegí una fecha libre. Si todavía no la sabés, igual podés armar el presupuesto.";
@@ -300,7 +346,7 @@
         var v = Math.round(t.valor * recargo);
         return (
           '<button type="button" class="opc' + (t.id === sel.turno ? " activo" : "") + '" data-turno="' + esc(t.id) + '" aria-pressed="' + (t.id === sel.turno) + '">' +
-          '<span class="opc-check" aria-hidden="true">✓</span><span class="opc-icono">' + esc(t.icono) + "</span>" +
+          '<span class="opc-check" aria-hidden="true">' + ico("check") + '</span><span class="opc-icono">' + ico(t.icono) + "</span>" +
           '<span class="opc-nombre">' + esc(t.nombre) + "</span>" +
           '<span class="opc-desc">' + esc(t.horario) + "</span>" +
           '<span class="opc-precio">' + pesos(v) + (fijo ? " el alquiler" : " por invitado") + "</span></button>"
@@ -321,7 +367,7 @@
     $("personas-menos").disabled = sel.personas <= esp.min;
     $("personas-mas").disabled = sel.personas >= esp.max;
     var ppm = C.reglas.personasPorMesa || 10;
-    $("personas-nota").textContent = "🪑 " + sel.personas + " sillas y " + Math.ceil(sel.personas / ppm) + " mesas (de " + ppm + ") incluidas. Este espacio recibe de " + esp.min + " a " + esp.max + " invitados.";
+    $("personas-nota").textContent = sel.personas + " sillas y " + Math.ceil(sel.personas / ppm) + " mesas (de " + ppm + ") incluidas. Este espacio recibe de " + esp.min + " a " + esp.max + " invitados.";
   }
 
   function etiquetaPrecio(item) {
@@ -392,7 +438,7 @@
               }
               return (
                 '<div class="opc' + (activo ? " activo" : "") + (enCombo ? " combo" : "") + (it.fijo ? " fijo" : "") + '" role="button" tabindex="0" data-item="' + esc(it.id) + '" aria-pressed="' + activo + '">' +
-                '<span class="opc-check" aria-hidden="true">✓</span><span class="opc-icono">' + esc(it.icono) + "</span>" +
+                '<span class="opc-check" aria-hidden="true">' + ico("check") + '</span><span class="opc-icono">' + ico(it.icono) + "</span>" +
                 '<span class="opc-nombre">' + esc(it.nombre) + "</span>" +
                 '<span class="opc-desc">' + esc(it.desc) + "</span>" +
                 '<span class="opc-precio">' + etiquetaPrecio(it) + "</span>" + sub + "</div>"
@@ -403,7 +449,7 @@
           combos
             .map(function (c) {
               var activo = combosActivos.indexOf(c.id) !== -1;
-              return '<p class="combo-aviso' + (activo ? " activo" : "") + '">🎁 ' + (activo ? "<strong>" + esc(c.nombre) + " aplicado:</strong> te queda en " : esc(c.nombre) + ": llevando los dos pagás ") + pesos(c.precio) + "</p>";
+              return '<p class="combo-aviso' + (activo ? " activo" : "") + '">' + ico("gift") + "<span>" + (activo ? "<strong>" + esc(c.nombre) + " aplicado:</strong> te queda en " : esc(c.nombre) + ": llevando los dos pagás ") + pesos(c.precio) + "</span></p>";
             })
             .join("") +
           "</div>";
@@ -429,7 +475,7 @@
         .join("") +
       r.combos
         .map(function (c) {
-          return '<div class="linea descuento"><span>🎁 ' + esc(c.nombre) + "</span><strong>−" + pesos(c.descuento) + "</strong></div>";
+          return '<div class="linea descuento"><span>' + esc(c.nombre) + "</span><strong>−" + pesos(c.descuento) + "</strong></div>";
         })
         .join("") +
       (r.minimoAplicado ? '<div class="linea"><span>Mínimo del salón</span><strong>' + pesos(C.reglas.minimoCobro) + "</strong></div>" : "");
@@ -520,7 +566,7 @@
     var btn = $("btn-sena");
     var texto = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = "⏳ Generando el link de pago…";
+    btn.innerHTML = "Generando el link de pago…";
     aviso("");
     fetch("/api/crear-pago", {
       method: "POST",
@@ -702,7 +748,7 @@
     var ppm = C.reglas.personasPorMesa || 10;
     $("personas-menos").disabled = sel.personas <= esp.min;
     $("personas-mas").disabled = sel.personas >= esp.max;
-    $("personas-nota").textContent = "🪑 " + sel.personas + " sillas y " + Math.ceil(sel.personas / ppm) + " mesas (de " + ppm + ") incluidas. Este espacio recibe de " + esp.min + " a " + esp.max + " invitados.";
+    $("personas-nota").textContent = sel.personas + " sillas y " + Math.ceil(sel.personas / ppm) + " mesas (de " + ppm + ") incluidas. Este espacio recibe de " + esp.min + " a " + esp.max + " invitados.";
   }
 
   /* ══════════ Inicio ══════════ */
@@ -711,6 +757,7 @@
   iniciarDemo();
   aplicarTema(document.documentElement.getAttribute("data-tema"));
   iniciarMarca();
+  iniciarNav();
   renderGaleria();
   enlazar();
   actualizar();
