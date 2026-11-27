@@ -650,6 +650,19 @@
   }
 
   /* ══════════ Eventos ══════════ */
+  // Flujo guiado (traído de Quinta Las Palmeras): al elegir algo, baja solo al
+  // paso siguiente si todavía no se ve en pantalla.
+  function avanzarA(id) {
+    var el = $(id);
+    if (!el) return;
+    setTimeout(function () {
+      var arriba = el.getBoundingClientRect().top;
+      if (arriba > 90 && arriba < window.innerHeight * 0.6) return;
+      var suave = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+      el.scrollIntoView({ behavior: suave ? "smooth" : "auto", block: "start" });
+    }, 300);
+  }
+
   function enlazar() {
     $("grid-espacios").addEventListener("click", function (e) {
       var b = e.target.closest("[data-espacio]");
@@ -663,6 +676,7 @@
         if (p.item.preseleccionado) sel.items[p.item.id] = 1;
       });
       actualizar();
+      avanzarA("paso-fecha");
     });
 
     $("calendario").addEventListener("click", function (e) {
@@ -680,6 +694,7 @@
       sel.fecha = sel.fecha === iso ? "" : iso;
       aviso("");
       actualizar({ sinEspacios: true });
+      if (sel.fecha) avanzarA("grid-turnos");
     });
 
     $("grid-turnos").addEventListener("click", function (e) {
@@ -687,6 +702,7 @@
       if (!b) return;
       sel.turno = b.getAttribute("data-turno");
       actualizar({ sinEspacios: true, sinCalendario: true });
+      avanzarA("paso-personas");
     });
 
     $("personas-slider").addEventListener("input", function (e) {

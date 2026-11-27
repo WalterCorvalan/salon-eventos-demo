@@ -747,6 +747,10 @@ section {
   flex-direction: column;
   gap: 14px;
 }
+.paso,
+#grid-turnos {
+  scroll-margin-top: 84px; /* que el menú fijo no tape el paso al bajar solo */
+}
 .paso {
   background: var(--superficie);
   border: 1px solid var(--borde);
