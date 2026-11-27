@@ -38,7 +38,7 @@ Escala de 4px: 4, 8, 12, 16, 20, 28, 36, 48, 72, 104 (secciones: 72px celular, 1
 - **Hero:** foto a pantalla completa con degradé abajo, título grande, datos rápidos (capacidad, espacios) y tarjeta de vidrio "Próximo sábado libre" que elige esa fecha en el cotizador.
 - **Navegación:** transparente sobre el hero; al bajar se vuelve sólida con desenfoque.
 - **Botón primario:** fondo `--acento` con sombra del mismo color.
-- **Tarjeta de opción:** ícono en baldosa de color; seleccionada: borde doble `--primario`, ícono en degradé y tilde. En celular va en fila (una por renglón): ícono a la izquierda, nombre y detalle a lo ancho, tilde a la derecha y el precio en una etiqueta. Márgenes laterales de 14px para aprovechar el ancho.
+- **Tarjeta de opción:** ícono en baldosa de color; seleccionada: borde doble `--primario`, ícono en degradé y tilde. Dos columnas también en celular (Walter las prefiere así), con márgenes laterales de 14px. Abajo, tras una línea punteada: monto grande en `--primario` + unidad chica, y el total en una etiqueta `--acento`.
 - **Calendario:** días redondos; finde = punto `--acento`; ocupado = tachado `--error`; elegido = círculo `--primario`.
 - **Resumen:** en celular, cápsula flotante oscura (`--tinta`) con el total y botón "Ver detalle", que aparece recién al bajar de la portada (no tapa el hero); en escritorio, columna fija.
 - **Pie:** marca grande, y columnas Visitanos / Escribinos / Tu fecha.

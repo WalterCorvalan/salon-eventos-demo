@@ -879,11 +879,42 @@ section {
   line-height: 1.4;
 }
 .opc-precio {
+  align-self: stretch;
+  display: block;
   margin-top: auto;
-  padding-top: 10px;
-  font-size: 13px;
-  font-weight: 700;
+  color: var(--apagado);
+  line-height: 1.25;
+}
+.opc-precio::before {
+  content: "";
+  display: block;
+  margin: 10px 0 9px;
+  border-top: 1px dashed var(--borde);
+}
+.opc-precio b {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--primario);
+  font-variant-numeric: tabular-nums;
+}
+.opc-precio small {
+  font-size: 12px;
+  font-weight: 600;
+}
+.opc-precio b:only-child {
+  font-size: 14px;
+}
+.opc-total {
+  display: table;
+  margin-top: 6px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--acento);
+  background: color-mix(in srgb, var(--acento) 11%, transparent);
+  font-variant-numeric: tabular-nums;
 }
 .opc-sub {
   font-size: 12px;
@@ -1587,7 +1618,7 @@ body.en-portada .wa-flotante {
   }
 }
 
-/* ── Celular: opciones en fila (ícono a la izquierda, texto a lo ancho, tilde a la derecha) ── */
+/* ── Celular: menos margen a los costados para aprovechar el ancho ── */
 @media (max-width: 639px) {
   .contenedor {
     padding: 0 14px;
@@ -1608,65 +1639,22 @@ body.en-portada .wa-flotante {
     margin-right: 4px;
   }
   .opc-grid {
-    grid-template-columns: 1fr;
     gap: 8px;
   }
   .opc {
-    display: grid;
-    grid-template-columns: 46px minmax(0, 1fr) 24px;
-    column-gap: 12px;
-    row-gap: 1px;
-    align-items: start;
-    padding: 12px 12px 12px 12px;
-    border-radius: 14px;
-  }
-  .opc > * {
-    grid-column: 2;
+    padding: 12px;
   }
   .opc-icono {
-    grid-column: 1;
-    grid-row: 1 / span 3;
-    width: 46px;
-    height: 46px;
-    margin: 0;
-    font-size: 22px;
-  }
-  .opc-check {
-    position: static;
-    grid-column: 3;
-    grid-row: 1;
-    margin-top: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 20px;
+    margin-bottom: 10px;
   }
   .opc-nombre {
-    padding-right: 0;
-    font-size: 15px;
+    font-size: 14.5px;
   }
   .opc-desc {
-    font-size: 13px;
-  }
-  .opc-precio {
-    margin-top: 6px;
-    padding: 0;
-    justify-self: start;
-    font-size: 13px;
-    padding: 3px 10px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--primario) 8%, transparent);
-    grid-column: 2 / 4;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .opc .contador,
-  .opc-sub {
-    grid-column: 2 / 4;
-  }
-  .opc .contador {
-    margin-top: 8px;
-    justify-self: start;
-  }
-  .opc-sub {
-    margin-top: 2px;
+    font-size: 12.5px;
   }
 }

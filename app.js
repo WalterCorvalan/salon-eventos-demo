@@ -271,7 +271,7 @@
         var desde = e.turnos.reduce(function (m, t) {
           return Math.min(m, t.valor);
         }, Infinity);
-        var precio = (e.precio && e.precio.modelo) === "fijo" ? "Alquiler desde " + pesos(desde) : "Desde " + pesos(desde) + " por invitado";
+        var precio = (e.precio && e.precio.modelo) === "fijo" ? montoHtml(pesos(desde), "alquiler", "Desde") : montoHtml(pesos(desde), "por invitado", "Desde");
         return (
           '<button type="button" class="opc' + (e.id === sel.espacio ? " activo" : "") + '" data-espacio="' + esc(e.id) + '" aria-pressed="' + (e.id === sel.espacio) + '">' +
           '<span class="opc-check" aria-hidden="true">' + ico("check") + '</span><span class="opc-icono">' + ico(e.icono) + "</span>" +
@@ -359,7 +359,7 @@
           '<span class="opc-check" aria-hidden="true">' + ico("check") + '</span><span class="opc-icono">' + ico(t.icono) + "</span>" +
           '<span class="opc-nombre">' + esc(t.nombre) + "</span>" +
           '<span class="opc-desc">' + esc(t.horario) + "</span>" +
-          '<span class="opc-precio">' + pesos(v) + (fijo ? " el alquiler" : " por invitado") + "</span></button>"
+          '<span class="opc-precio">' + montoHtml(pesos(v), fijo ? "el alquiler" : "por invitado") + "</span></button>"
         );
       })
       .join("");
@@ -380,25 +380,31 @@
     $("personas-nota").textContent = sel.personas + " sillas y " + Math.ceil(sel.personas / ppm) + " mesas (de " + ppm + ") incluidas. Este espacio recibe de " + esp.min + " a " + esp.max + " invitados.";
   }
 
+  /* Precio de una tarjeta: monto destacado, unidad chica y (opcional) total aparte */
+  function montoHtml(monto, unidad, antes, total) {
+    return (antes ? "<small>" + antes + "</small> " : "") + "<b>" + monto + "</b>" + (unidad ? " <small>" + unidad + "</small>" : "") +
+      (total ? '<span class="opc-total">Total ' + total + "</span>" : "");
+  }
+
   function etiquetaPrecio(item) {
     var p = item.precio || { tipo: "incluido" };
     var unit = Q.precioUnitario(item, sel.turno);
     switch (p.tipo) {
       case "incluido":
-        return "Incluido";
+        return "<b>Incluido</b>";
       case "consultar":
-        return "A consultar";
+        return "<b>A consultar</b>";
       case "por_persona":
-        return pesos(unit) + " por invitado · " + pesos(unit * sel.personas);
+        return montoHtml(pesos(unit), "por invitado", "", pesos(unit * sel.personas));
       case "por_persona_cantidad":
-        return pesos(unit) + " por invitado";
+        return montoHtml(pesos(unit), "por invitado");
       case "por_cantidad":
-        return pesos(unit) + " por " + esc(p.unidad || "unidad");
+        return montoHtml(pesos(unit), "por " + esc(p.unidad || "unidad"));
       case "por_turno":
         var t = Q.buscarTurno(espacioActual(), sel.turno);
-        return pesos(unit) + (t ? " (" + esc(t.nombre.toLowerCase()) + ")" : "");
+        return montoHtml(pesos(unit), t ? esc(t.nombre.toLowerCase()) : "");
       default:
-        return pesos(unit);
+        return montoHtml(pesos(unit));
     }
   }
 
