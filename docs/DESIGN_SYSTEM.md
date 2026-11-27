@@ -21,7 +21,8 @@ Cálido, festivo, claro, confiable.
 Un cliente puede pisar `primario` y `acento` con sus colores en `config.js` (`marca.colores`).
 
 ## 03 Tipografía
-- Títulos: Instrument Serif 400 (cursiva para la palabra destacada, en `--acento`). Tema elegante: Cormorant Garamond 500.
+- Títulos: Bricolage Grotesque 700, letras juntas (-0.035em). La palabra destacada va en el mismo tipo pero fina (300) y en `--acento`. Tema elegante: Jost 400 (destacada en cursiva fina).
+- **Nada de fuentes con serif** (las de "colita"): Walter las rechaza.
 - Texto: Manrope 400–800.
 - H1 (hero): clamp(60px, 15vw, 132px) · H2: clamp(38px, 7vw, 64px) · H3: 24–28px
 - Sobretítulos: 12px, mayúsculas, espaciado 0.16em, color `--acento`, con línea a la izquierda.
@@ -39,11 +40,15 @@ Escala de 4px: 4, 8, 12, 16, 20, 28, 36, 48, 72, 104 (secciones: 72px celular, 1
 - **Botón primario:** fondo `--acento` con sombra del mismo color.
 - **Tarjeta de opción:** ícono en cuadradito `--suave-fondo`; seleccionada: borde doble `--primario`, ícono invertido y tilde.
 - **Calendario:** días redondos; finde = punto `--acento`; ocupado = tachado `--error`; elegido = círculo `--primario`.
-- **Resumen:** en celular, cápsula flotante oscura (`--tinta`) con el total y botón "Ver detalle"; en escritorio, columna fija.
+- **Resumen:** en celular, cápsula flotante oscura (`--tinta`) con el total y botón "Ver detalle", que aparece recién al bajar de la portada (no tapa el hero); en escritorio, columna fija.
+- **Pie:** marca grande, y columnas Visitanos / Escribinos / Tu fecha.
 - **Galería:** grilla tipo mosaico, primera foto grande, epígrafe sobre degradé.
 
 ## 07 Íconos
-Íconos de línea Lucide (licencia ISC) en `iconos.js`, generado con los que se usan. En `config.js` se pone el nombre (`"landmark"`, `"trees"`…); si se pone un emoji, se muestra el emoji.
+Dibujos de Lucide (licencia ISC) en `iconos.js`, pintados **a dos tonos**: línea + relleno suave (`.duo`). Siempre van dentro de una "baldosa" con color: en "Por qué elegirnos", baldosa con degradé (alternando `--acento` y `--primario`); en las opciones, baldosa suave de `--acento` que se vuelve degradé `--primario` al elegirla. Nunca íconos de línea sueltos (Walter los ve "de IA"). Las flechas, tildes y +/− quedan solo con línea. En `config.js` se pone el nombre (`"landmark"`, `"trees"`…); si se pone un emoji, se muestra el emoji.
+
+## 07b Fotos
+Las fotos de la demo son reales, con licencia libre (CC0 o Unsplash): ver `img/demo/CREDITOS.md`. Cada cliente las reemplaza por las suyas.
 
 ## 08 Pantallas
 - Celular: < 640px · Tablet: 640–1024px · Escritorio: > 1024px (resumen pasa a columna lateral fija).

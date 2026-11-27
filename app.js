@@ -116,7 +116,14 @@
       ig.innerHTML = '<a class="btn btn-secundario" target="_blank" rel="noopener" href="' + esc(m.instagram) + '">Ver más en Instagram</a>';
     }
 
-    $("pie-texto").innerHTML = esc(m.nombre) + " · " + esc(m.ciudad) + "<br><small>" + esc(m.eslogan) + "</small>";
+    $("pie-marca").innerHTML = '<span class="pie-logo">' + esc(m.nombre) + "</span><small>" + esc(m.eslogan) + "</small>";
+    var waPie = linkWa(m.whatsapp, "Hola, quiero consultar disponibilidad en " + m.nombre);
+    $("pie-datos").innerHTML =
+      '<div class="pie-col"><span class="pie-titulo">Visitanos</span><p>' + esc(m.direccion) + "</p></div>" +
+      '<div class="pie-col"><span class="pie-titulo">Escribinos</span><a href="' + esc(waPie) + '" target="_blank" rel="noopener">WhatsApp ' + ico("arrow-up-right") + "</a>" +
+      (m.instagram ? '<a href="' + esc(m.instagram) + '" target="_blank" rel="noopener">Instagram ' + ico("arrow-up-right") + "</a>" : "") + "</div>" +
+      '<div class="pie-col"><span class="pie-titulo">Tu fecha</span><a href="#cotizador">Armá tu presupuesto ' + ico("arrow-right") + "</a></div>";
+    $("pie-legal").textContent = "© " + new Date().getFullYear() + " " + m.nombre + " · " + m.ciudad;
     var wa = $("wa-flotante");
     wa.href = linkWa(m.whatsapp, "Hola, quiero consultar disponibilidad en " + m.nombre);
   }
@@ -158,8 +165,11 @@
 
   function iniciarNav() {
     var nav = document.querySelector(".nav");
+    var hero = $("inicio");
     function revisar() {
       nav.classList.toggle("solida", window.scrollY > 40);
+      // En celular, la cápsula del total no tapa la portada: aparece al bajar
+      document.body.classList.toggle("en-portada", window.scrollY < hero.offsetHeight * 0.55);
     }
     window.addEventListener("scroll", revisar, { passive: true });
     revisar();
