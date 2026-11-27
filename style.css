@@ -1586,3 +1586,87 @@ body.en-portada .wa-flotante {
     scroll-behavior: auto;
   }
 }
+
+/* ── Celular: opciones en fila (ícono a la izquierda, texto a lo ancho, tilde a la derecha) ── */
+@media (max-width: 639px) {
+  .contenedor {
+    padding: 0 14px;
+  }
+  .paso {
+    padding: 20px 12px 14px;
+  }
+  .paso-cabeza {
+    padding: 0 4px;
+    margin-bottom: 14px;
+  }
+  .paso-cabeza h3 {
+    font-size: 24px;
+  }
+  .paso > .nota,
+  .paso > .combo-aviso {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .opc-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .opc {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) 24px;
+    column-gap: 12px;
+    row-gap: 1px;
+    align-items: start;
+    padding: 12px 12px 12px 12px;
+    border-radius: 14px;
+  }
+  .opc > * {
+    grid-column: 2;
+  }
+  .opc-icono {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: 46px;
+    height: 46px;
+    margin: 0;
+    font-size: 22px;
+  }
+  .opc-check {
+    position: static;
+    grid-column: 3;
+    grid-row: 1;
+    margin-top: 1px;
+  }
+  .opc-nombre {
+    padding-right: 0;
+    font-size: 15px;
+  }
+  .opc-desc {
+    font-size: 13px;
+  }
+  .opc-precio {
+    margin-top: 6px;
+    padding: 0;
+    justify-self: start;
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primario) 8%, transparent);
+    grid-column: 2 / 4;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .opc .contador,
+  .opc-sub {
+    grid-column: 2 / 4;
+  }
+  .opc .contador {
+    margin-top: 8px;
+    justify-self: start;
+  }
+  .opc-sub {
+    margin-top: 2px;
+  }
+}
